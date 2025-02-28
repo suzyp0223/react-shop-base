@@ -1,13 +1,14 @@
 // https://vitejs.dev/config/
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig(({ command, mode }) => {
   const base = {
-    plugins: [react()],
-  //    server: {
-  //   port: 3000, // 5173 대신 3000번 포트에서 실행
-  // },
+    plugins: [react(), svgr()],
+    //    server: {
+    //   port: 3000, // 5173 대신 3000번 포트에서 실행
+    // },
   };
 
   /**

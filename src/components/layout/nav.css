@@ -1,0 +1,41 @@
+.NavWrapper {
+  height: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "link search search";
+  color: white;
+
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+}
+
+.NavUl {
+  grid-area: link;
+  display: inline-block;
+}
+
+.NavHamBtn {
+}
+
+.NavHamTitle {
+}
+
+.NavLi .a {
+  color: white;
+  font-size: 15px;
+}
+
+.NavRight {
+  grid-area: search;
+  display: inline-block;
+}
+
+.NavDayNight {
+}
+
+.NavSearch {
+}
+
+.NavCart {
+}

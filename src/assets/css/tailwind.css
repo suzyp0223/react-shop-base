@@ -16,6 +16,7 @@ body {
 .drawer-content {
   max-height: initial !important;
   min-height: -webkit-fill-available;
+  background-color: #2a303c;
 }
 
 .drawer-toggle:checked + .drawer-content {
