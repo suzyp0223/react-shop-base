@@ -29,5 +29,9 @@
   },
   "dependencies": {
     "@vercel/node": "^2.15.10"
-  }
+  },
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
