@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './nav.css'
 import { LiaShoppingBagSolid } from "react-icons/lia";
@@ -6,54 +6,132 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { ImSun } from "react-icons/im";
 import { BiMoon } from "react-icons/bi";
 
+import CartButton from '../carts/cartButton';
 
-const HamBtnIcon = RxHamburgerMenu as React.ElementType;
-const CartIcon = LiaShoppingBagSolid as React.ElementType;
+
+export const HamBtnIcon = RxHamburgerMenu as React.ElementType;
+export const CartIcon = LiaShoppingBagSolid as React.ElementType;
 const ImSunIcon = ImSun as React.ElementType;
 const BiMoonIcon = BiMoon as React.ElementType;
 
 export default function Nav() {
   const [search, setSearch] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const accordionRef = useRef<HTMLDivElement>(null);
+  const darkModeRef = useRef<HTMLDivElement>(null);
 
   const textHome = 'React Shop';
   const textFash = '패션';
   const textAcce = '액세서리';
   const textDigi = '디지털';
 
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
+  const isNavToggle = () => {
+    setIsOpen(true);
+    // setIsOpen((preValue) => {
+    //   console.log("isOpen 상태변경", !preValue);
+    //   return !preValue
+    // });
+  }
+
+
+  // 아코디언 자동감지
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (accordionRef.current && !accordionRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    // 이벤트 리스너 추가
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // 컴포넌트 언마운트 시 이벤트 제거
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1025 && isOpen) {
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
+  // light/ dark 모드 변경
+  const isDarkMode = () => {
+    setDarkMode((preValue) => {
+      console.log("dayNightMode 상태변경", !preValue);
+      return !preValue
+    });
+  }
+  useEffect(() => {
+    const drawerContent = document.querySelector(".drawer-content") as HTMLElement;
+    const navWrapper = document.querySelector(".NavWrapper") as HTMLElement;
+    const navHamBtn = document.querySelector(".NavHamBtn") as HTMLElement;
+    if (drawerContent) {
+      if (darkMode) {
+        drawerContent.style.backgroundColor = "#161923";
+        drawerContent.style.color = "white";
+      } else {
+        drawerContent.style.backgroundColor = "white";
+        navWrapper.style.color = "black";
+        navHamBtn.style.backgroundColor = "white";
+        navHamBtn.style.color = "black";
+      }
+    }
+  }, [darkMode]);
+
+
+
 
   return (
     <>
-      <div className=" NavWrapper">
+      <nav className=" NavWrapper ">
+        {/* 왼쪽 메뉴 */}
         <ul className=" NavUl">
-          <div className=" NavHamBtn">
-            <HamBtnIcon size={24} />
-            {/* <img src={hamIcon} alt="아코디언 버튼" width={16} height={12} /> */}
-            {/* <a className={NavHamTitle}>{textFash} {textAcce} {textDigi}
-            </a> */}
-          </div>
-          <li className="NavLi">{textHome}</li>
-          <li className="NavLi">{textFash}</li>
-          <li className="NavLi">{textAcce}</li>
-          <li className="NavLi">{textDigi}</li>
 
+          <button onClick={isNavToggle} className="lg:hidden">
+            <HamBtnIcon size={24} />
+          </button>
+          <div ref={accordionRef} className={`NavHamBtn  ${isOpen ? "block" : ""} lg:block`}>
+
+            <ul className="NavToggle">
+              <li className="NavToggleLi"><a href="#">{textFash}</a></li>
+              <li className="NavToggleLi"><a href="#">{textAcce}</a></li>
+              <li className="NavToggleLi"><a href="#">{textDigi}</a></li>
+            </ul>
+          </div>
+
+          <li className="NavLi"><a href="#">{textHome}</a></li>
+          <li className="NavLi"><a href="#">{textFash}</a></li>
+          <li className="NavLi"><a href="#">{textAcce}</a></li>
+          <li className="NavLi"><a href="#">{textDigi}</a></li>
         </ul>
 
 
+        {/* 오른쪽 메뉴 */}
         <div className=" NavRight">
-          <div className=" NavDayNight">
-
+          <div className=" NavDayNight" onClick={isDarkMode} style={{ cursor: "pointer", color: darkMode ? "white" : "#161923" }}>
+            {darkMode ? <ImSunIcon size={24} /> : <BiMoonIcon size={24} />}
           </div>
           <input className=" NavSearch" type="text" value={search} onChange={handleChange} placeholder='검색' />
-
-          <div className=" NavCart">
-            <CartIcon size={24} />
-          </div>
+          <CartButton />
         </div>
-      </div>
+      </nav >
     </>
   );
 }

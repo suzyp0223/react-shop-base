@@ -1,41 +1,123 @@
 .NavWrapper {
-  height: 6rem;
+  height: 8vh;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas: "link search search";
+  align-items: center;
   color: white;
-
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: bold;
+  padding: 0.8rem;
+  position: relative;
 }
 
+/* 왼쪽 메뉴 */
 .NavUl {
   grid-area: link;
-  display: inline-block;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
+/* 햄버거 버튼 */
 .NavHamBtn {
+  /* cursor: pointer; */
+  transform: translateX(-100%);
+  transition: transform 0.5s  ease-in-out;
+  background-color: #2a303c;
+  z-index: 10;
+  height: 100vh;
+  width: 320px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* 햄버거 버튼이 열릴 때 */
+.NavHamBtn.block {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
-.NavHamTitle {
+.NavToggle {
+  height: 100%;
+  width: 130px;
+  padding: 1.6rem;
 }
-
-.NavLi .a {
+.NavToggleLi {
+  font-weight: 500;
+  width: 18rem;
+  margin-bottom: 10px;
+}
+.NavToggleLi a {
+  display: block;
+  padding: 1rem;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+.NavToggleLi a:hover {
+  background-color: #4b5563;
+  border-radius: 0.5rem;
   color: white;
-  font-size: 15px;
+}
+.NavLi {
+  list-style: none;
+  cursor: pointer;
 }
 
+/* 오른쪽 버튼 */
 .NavRight {
   grid-area: search;
-  display: inline-block;
-}
-
-.NavDayNight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
 }
 
 .NavSearch {
+  margin: 0 1rem;
+  padding: 0 1rem;
+  border-radius: 5px;
+  height: 3rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  border-width: 1px;
+  background-color: #4b5563;
+  border-color: #4b5563;
+}
+
+.NavDayNight {
+  cursor: pointer;
 }
 
 .NavCart {
+  cursor: pointer;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.CartBadge {
+  position: absolute;
+  top: -0.8rem;
+  right: -0.8rem;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  font-size: 0.8rem;
+  color: white;
+  text-align: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 1025px) {
+ .NavHamBtn {
+  display: none;
+ }
 }
