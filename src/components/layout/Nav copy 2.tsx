@@ -8,6 +8,7 @@ import { BiMoon } from "react-icons/bi";
 
 import CartButton from '../carts/cartButton';
 
+
 export const HamBtnIcon = RxHamburgerMenu as React.ElementType;
 export const CartIcon = LiaShoppingBagSolid as React.ElementType;
 const ImSunIcon = ImSun as React.ElementType;
@@ -16,16 +17,15 @@ const BiMoonIcon = BiMoon as React.ElementType;
 export default function Nav() {
   const [search, setSearch] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark" //기존 설정 유지
-  });
-
+  const [darkMode, setDarkMode] = useState(false);
   const accordionRef = useRef<HTMLDivElement>(null);
+  const darkModeRef = useRef<HTMLDivElement>(null);
 
   const textHome = 'React Shop';
   const textFash = '패션';
   const textAcce = '액세서리';
   const textDigi = '디지털';
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -33,7 +33,12 @@ export default function Nav() {
 
   const isNavToggle = () => {
     setIsOpen(true);
+    // setIsOpen((preValue) => {
+    //   console.log("isOpen 상태변경", !preValue);
+    //   return !preValue
+    // });
   }
+
 
   // 아코디언 자동감지
   useEffect(() => {
@@ -45,13 +50,13 @@ export default function Nav() {
 
     // 이벤트 리스너 추가
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       // 컴포넌트 언마운트 시 이벤트 제거
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  // 창 크기 변경에 따른 동작
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1025 && isOpen) {
@@ -65,36 +70,25 @@ export default function Nav() {
     };
   }, []);
 
+
   // light/ dark 모드 변경
   const isDarkMode = () => {
-    setDarkMode((prev) => {
-      const newMode = !prev;
-      localStorage.setItem("theme", newMode ? "dark" : "light"); // 상태를 로컬스토리지에 저장
-      return newMode;
+    setDarkMode((preValue) => {
+      console.log("dayNightMode 상태변경", !preValue);
+      return !preValue
     });
-  };
-
-  useEffect(() => {
-    const drawerContent = document.querySelector(".drawer-content") as HTMLElement;
-    if (drawerContent) {
-      if (isOpen) {
-        drawerContent.classList.add('open');
-      } else {
-        drawerContent.classList.remove('open');
-      }
-    }
-  }, [isOpen]);
-
+  }
   useEffect(() => {
     const drawerContent = document.querySelector(".drawer-content") as HTMLElement;
     const navWrapper = document.querySelector(".NavWrapper") as HTMLElement;
     const navHamBtn = document.querySelector(".NavHamBtn") as HTMLElement;
     const navSearch = document.querySelector(".NavSearch") as HTMLElement;
-    const navToggleLi = document.querySelectorAll(".NavToggleLi") as NodeListOf<HTMLElement>;
+    const navToggleLi = document.querySelector(".NavToggleLi") as HTMLElement;
 
     const darkModeColor = "#374151";
     const darkSearchColor = "#4b5563";
     const lightgrayColor = "#e5e7eb";
+
 
     if (drawerContent) {
       if (darkMode) {
@@ -105,24 +99,20 @@ export default function Nav() {
         navSearch.style.backgroundColor = darkSearchColor;
         navSearch.style.outline = "none";
       } else {
-        navToggleLi.forEach((li) => {
-          li.addEventListener("mouseover", () => {
-            li.style.backgroundColor = lightgrayColor;
-          });
-          li.addEventListener("mouseout", () => {
-            li.style.backgroundColor = ''; // 원래 스타일로 되돌리기
-          });
-        });
-
         drawerContent.style.backgroundColor = "white";
         navWrapper.style.color = darkModeColor;
         navHamBtn.style.backgroundColor = "white";
         navSearch.style.backgroundColor = lightgrayColor;
         navSearch.style.border = lightgrayColor;
         navHamBtn.style.color = darkModeColor;
+        navToggleLi.style.backgroundColor = lightgrayColor;
+
       }
     }
   }, [darkMode]);
+
+
+
 
   return (
     <>

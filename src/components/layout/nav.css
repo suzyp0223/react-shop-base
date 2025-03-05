@@ -1,3 +1,34 @@
+/* 기본 라이트 모드 */
+body {
+  background-color: white;
+  color: #374151;
+}
+/* 다크 라이트 모드 */
+body.dark-mode {
+  background-color: #374151;
+  color: white;
+}
+.dark-mode .NavWrapper {
+  color: white;
+}
+
+.dark-mode .NavHamBtn {
+  background-color: #374151;
+}
+
+.dark-mode .NavSearch {
+  background-color: #4b5563;
+  border-color: #4b5563;
+  color: white;
+}
+
+/* 네비게이션 링크 hover */
+.dark-mode .NavToggleLi a:hover {
+  background-color: #4b5563;
+  border-radius: 0.5rem;
+  color: white;
+}
+
 .NavWrapper {
   height: 8vh;
   display: grid;
@@ -24,7 +55,7 @@
 .NavHamBtn {
   /* cursor: pointer; */
   transform: translateX(-100%);
-  transition: transform 0.5s  ease-in-out;
+  transition: transform 0.5s ease-in-out;
   background-color: #2a303c;
   z-index: 10;
   height: 100vh;
@@ -33,11 +64,26 @@
   top: 0;
   left: 0;
 }
+
+/* 배경화면 투명도 */
+.drawer-content.open::after {
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 /* 햄버거 버튼이 열릴 때 */
 .NavHamBtn.block {
   transform: translateX(0);
   opacity: 1;
   visibility: visible;
+}
+.NavHamBtn.open {
+  z-index: 1000;
 }
 
 .NavToggle {
@@ -117,7 +163,7 @@
 }
 
 @media screen and (min-width: 1025px) {
- .NavHamBtn {
-  display: none;
- }
+  .NavHamBtn {
+    display: none;
+  }
 }
