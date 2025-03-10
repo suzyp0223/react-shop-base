@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import './nav.css'
+import '../../assets/css/nav.css'
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { ImSun } from "react-icons/im";
 import { BiMoon } from "react-icons/bi";
 
-import CartButton from '../carts/cartButton';
+import CartButton from '../carts/CartButton';
 
 export const HamBtnIcon = RxHamburgerMenu as React.ElementType;
 export const CartIcon = LiaShoppingBagSolid as React.ElementType;

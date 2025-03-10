@@ -7,7 +7,9 @@ import Nav from "./components/layout/Nav";
 import Footer from "./components/layout/Footer";
 import { RecoilRoot } from "recoil";
 
+
 const App = (): JSX.Element => {
+  // Recoil 상태에서 productsList 값 가져오기
 
   return (
     <RecoilRoot>
