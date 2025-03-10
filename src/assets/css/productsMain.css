@@ -1,12 +1,10 @@
 /* 전체 컨테이너 */
-.main {
-  margin: 10px;
-}
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin: 0 auto;
 }
 
 /* 카테고리별 섹션 */

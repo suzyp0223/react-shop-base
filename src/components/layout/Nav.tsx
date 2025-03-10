@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../assets/css/nav.css'
 import { LiaShoppingBagSolid } from "react-icons/lia";
@@ -130,22 +131,22 @@ export default function Nav() {
         {/* 왼쪽 메뉴 */}
         <ul className=" NavUl">
 
-          <button onClick={isNavToggle} className="lg:hidden">
+          <button onClick={isNavToggle} className="nav-btn lg:hidden">
             <HamBtnIcon size={24} />
           </button>
           <div ref={accordionRef} className={`NavHamBtn  ${isOpen ? "block" : ""} lg:block`}>
 
             <ul className="NavToggle">
-              <li className="NavToggleLi"><a href="#">{textFash}</a></li>
-              <li className="NavToggleLi"><a href="#">{textAcce}</a></li>
-              <li className="NavToggleLi"><a href="#">{textDigi}</a></li>
+              <li className="NavToggleLi"><Link to="/products/fashion">{textFash}</Link></li>
+              <li className="NavToggleLi"><Link to="/products/accessory">{textAcce}</Link></li>
+              <li className="NavToggleLi"><Link to="/products/digital">{textDigi}</Link></li>
             </ul>
           </div>
 
-          <li className="NavLi"><a href="#">{textHome}</a></li>
-          <li className="NavLi"><a href="#">{textFash}</a></li>
-          <li className="NavLi"><a href="#">{textAcce}</a></li>
-          <li className="NavLi"><a href="#">{textDigi}</a></li>
+          <li className="NavLi"><Link to="/">{textHome}</Link></li>
+          <li className="NavLi"><Link to="/products/fashion">{textFash}</Link></li>
+          <li className="NavLi"><Link to="/products/accessory">{textAcce}</Link></li>
+          <li className="NavLi"><Link to="/products/digital">{textDigi}</Link></li>
         </ul>
 
 

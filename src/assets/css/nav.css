@@ -1,7 +1,7 @@
 /* 기본 라이트 모드 */
 body {
   background-color: white;
-  color: #374151;
+  color: #171a1f;
 }
 /* 다크 라이트 모드 */
 body.dark-mode {
