@@ -8,6 +8,8 @@ import { ImSun } from "react-icons/im";
 import { BiMoon } from "react-icons/bi";
 
 import CartButton from '../carts/CartButton';
+import Search from '../common/Search';
+
 
 export const HamBtnIcon = RxHamburgerMenu as React.ElementType;
 export const CartIcon = LiaShoppingBagSolid as React.ElementType;
@@ -15,7 +17,7 @@ const ImSunIcon = ImSun as React.ElementType;
 const BiMoonIcon = BiMoon as React.ElementType;
 
 export default function Nav() {
-  const [search, setSearch] = useState('');
+
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark" //기존 설정 유지
@@ -27,10 +29,6 @@ export default function Nav() {
   const textFash = '패션';
   const textAcce = '액세서리';
   const textDigi = '디지털';
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
 
   const isNavToggle = () => {
     setIsOpen(true);
@@ -159,8 +157,12 @@ export default function Nav() {
           <div className=" NavDayNight" onClick={isDarkMode} style={{ cursor: "pointer", color: darkMode ? "white" : "#161923" }}>
             {darkMode ? <ImSunIcon size={24} /> : <BiMoonIcon size={24} />}
           </div>
-          <input className=" NavSearch" type="text" value={search} onChange={handleChange} placeholder='검색' />
+          <Search />
+          {/* <input className=" NavSearch" type="text" placeholder='검색' /> */}
           <CartButton />
+
+          {/* 🔍 검색 결과 */}
+
         </div>
       </nav >
     </>

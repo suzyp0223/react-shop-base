@@ -130,6 +130,8 @@ body.dark-mode {
   border-width: 1px;
   background-color: #4b5563;
   border-color: #4b5563;
+  list-style: none;
+
 }
 
 .NavDayNight {
