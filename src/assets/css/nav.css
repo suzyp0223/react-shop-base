@@ -1,11 +1,11 @@
 /* 기본 라이트 모드 */
 body {
-  background-color: white;
-  color: #171a1f;
+  /* background-color: white;
+  color: #a6adbb; */
 }
 /* 다크 라이트 모드 */
 body.dark-mode {
-  background-color: #374151;
+  background-color: #181b24;
   color: white;
 }
 .dark-mode .NavWrapper {

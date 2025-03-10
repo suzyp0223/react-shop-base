@@ -92,6 +92,8 @@ export default function Nav() {
     const navHamBtn = document.querySelector(".NavHamBtn") as HTMLElement;
     const navSearch = document.querySelector(".NavSearch") as HTMLElement;
     const navToggleLi = document.querySelectorAll(".NavToggleLi") as NodeListOf<HTMLElement>;
+    const footer = document.querySelector('.footer') as HTMLElement;
+    const main = document.querySelector('main') as HTMLElement;
 
     const darkModeColor = "#374151";
     const darkSearchColor = "#4b5563";
@@ -105,6 +107,8 @@ export default function Nav() {
         navHamBtn.style.color = "white";
         navSearch.style.backgroundColor = darkSearchColor;
         navSearch.style.outline = "none";
+        footer.style.backgroundColor = darkModeColor;
+        // main.style.backgroundColor = darkModeColor;
       } else {
         navToggleLi.forEach((li) => {
           li.addEventListener("mouseover", () => {
