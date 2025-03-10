@@ -105,6 +105,7 @@ body.dark-mode {
   background-color: #4b5563;
   border-radius: 0.5rem;
   color: white;
+
 }
 .NavLi {
   list-style: none;
@@ -121,7 +122,7 @@ body.dark-mode {
 }
 
 .NavSearch {
-  margin: 0 1rem;
+  margin: 0 1.3rem;
   padding: 0 1rem;
   border-radius: 5px;
   height: 3rem;
@@ -130,8 +131,7 @@ body.dark-mode {
   border-width: 1px;
   background-color: #4b5563;
   border-color: #4b5563;
-  list-style: none;
-
+  outline: none;
 }
 
 .NavDayNight {
@@ -145,13 +145,22 @@ body.dark-mode {
   height: 1.5rem;
   display: flex;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: 1.3rem;
+}
+.NavCartLink {
+  display: flex;
+  padding: 0.7rem;
+}
+.NavCartLink:hover {
+  background-color: #1f293733;
+  border-radius: 0.5rem;
+  transition: 0.3s ease;
 }
 
 .CartBadge {
   position: absolute;
   top: -0.8rem;
-  right: -0.8rem;
+  right: -1.3rem;
   background-color: red;
   border: 1px solid red;
   border-radius: 50%;

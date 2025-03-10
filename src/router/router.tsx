@@ -16,6 +16,7 @@ const Router = (): JSX.Element => {
       <Route path="/nav" element={<Nav />} />
       <Route path="/footer" element={<Footer />} />
       <Route path="/products/:category" element={<ProductsView />} />
+      <Route path="/cart" element={<Cart />} />
 
       <Route path="/ProductsView" element={<ProductsView />} />
       <Route path="/ProductsViewLoad" element={<ProductsViewLoad />} />

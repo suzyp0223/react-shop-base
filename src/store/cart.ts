@@ -38,8 +38,14 @@ export const cartState = atom<ICartState>({
  * cartList를 구현 하세요.
  * id, image, count 등을 return합니다.
  */
+export const cartList = () => {
+
+};
 
 // addToCart는 구현 해보세요.
+export const addToCart = () => {
+
+};
 
 // removeFromCart는 참고 하세요.
 export const removeFromCart = (cart: ICartState, id: string) => {
