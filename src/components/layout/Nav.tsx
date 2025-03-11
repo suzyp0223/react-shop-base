@@ -34,6 +34,10 @@ export default function Nav() {
     setIsOpen(true);
   }
 
+  const closeNav = () => {
+    setIsOpen(false);
+  }
+
   // 아코디언 자동감지
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -117,7 +121,7 @@ export default function Nav() {
           title.style.color = '#a6adbb'
         });
         footer.style.backgroundColor = '#242933';
-        footer.style.backgroundColor = '#242933';
+        // footer.style.backgroundColor = '#242933';
         footer.style.color = lightgrayColor;
 
         // main.style.backgroundColor = darkModeColor;
@@ -130,6 +134,10 @@ export default function Nav() {
             li.style.backgroundColor = ''; // 원래 스타일로 되돌리기
           });
         });
+        textBox.forEach(div => {
+          div.style.backgroundColor = '#f3f4f6';
+          div.style.color = '#000000';
+        });
 
         drawerContent.style.backgroundColor = "white";
         navWrapper.style.color = darkModeColor;
@@ -137,6 +145,8 @@ export default function Nav() {
         navSearch.style.backgroundColor = lightgrayColor;
         navSearch.style.border = lightgrayColor;
         navHamBtn.style.color = darkModeColor;
+        footer.style.backgroundColor = '#f2f2f2';
+        footer.style.color = '#000000';
       }
     }
   }, [darkMode]);
@@ -153,9 +163,9 @@ export default function Nav() {
           <div ref={accordionRef} className={`NavHamBtn  ${isOpen ? "block" : ""} lg:block`}>
 
             <ul className="NavToggle">
-              <li className="NavToggleLi"><Link to="/products/fashion">{textFash}</Link></li>
-              <li className="NavToggleLi"><Link to="/products/accessory">{textAcce}</Link></li>
-              <li className="NavToggleLi"><Link to="/products/digital">{textDigi}</Link></li>
+              <li className="NavToggleLi"><Link to="/products/fashion" onClick={closeNav}>{textFash}</Link></li>
+              <li className="NavToggleLi"><Link to="/products/accessory" onClick={closeNav}>{textAcce}</Link></li>
+              <li className="NavToggleLi"><Link to="/products/digital" onClick={closeNav}>{textDigi}</Link></li>
             </ul>
           </div>
 

@@ -2,12 +2,22 @@ import '../../assets/css/search.css'
 
 import { IProduct, productsList } from "../../store/products"; // ✅ 상품 인터페이스 가져오기
 import React, { useState } from "react";
-import { useRecoilValue } from "recoil";
+// import { useRecoilValue } from "recoil";
+import { useRecoilValueLoadable } from "recoil";
 
 const Search = () => {
-  const products = useRecoilValue(productsList); //상품데이터 가져오기
+  const productsLoadable = useRecoilValueLoadable(productsList); //상품데이터 가져오기
   const [search, setSearch] = useState<string>('');  // 검색어 상태
   const [filteredResults, setFilteredResults] = useState<IProduct[]>([]);  // 필터링 결과
+
+  if (productsLoadable.state === "loading") {
+    return <div className="search-container">🔄 상품 정보를 불러오는 중...</div>;
+  }
+  if (productsLoadable.state === "hasError") {
+    return <div className="search-container">❌ 상품 데이터를 불러오는 데 실패했습니다.</div>;
+  }
+
+  const products = productsLoadable.contents;
 
   // 🔍 검색어 입력 시 실행되는 함수
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,10 +59,6 @@ const Search = () => {
     </div>
   );
 };
-
-
-
-
 
 
 export default Search;

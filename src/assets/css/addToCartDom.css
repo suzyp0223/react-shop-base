@@ -1,5 +1,7 @@
 .wrap {
   border: 1px solid black;
+    margin-top: -40px;
+    margin-left: 1rem;;
 }
 .addCartFlexWrap {
   margin: 0 auto;

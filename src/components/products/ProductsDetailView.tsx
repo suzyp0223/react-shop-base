@@ -3,15 +3,11 @@ import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
-import { ProductsTitle } from '../products/ProductsTitle';
 import { Link, useParams } from 'react-router-dom';
 import { IProduct, productsList, } from '../../store/products';
 import { useRecoilValue } from 'recoil';
 import { Category } from '../../constants/category';
 import Rating from '../common/Rating';
-
-
-// 상세페이지
 
 
 export default function ProductsDetailView() {

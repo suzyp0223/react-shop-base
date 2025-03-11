@@ -4,7 +4,7 @@ import React from "react";
 import { IProduct } from "../../store/products";
 import { Category } from "../../constants/category"; // ✅ Category 가져오기
 import { Link } from 'react-router-dom';
-
+import { MENUS } from '../../constants/category';
 
 type ProductPreview = Pick<IProduct, "id" | "category" | "title" | "price" | "image">;
 
