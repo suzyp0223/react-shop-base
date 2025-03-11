@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../assets/css/productsView.css';
 
 import { Category } from "../../constants/category"; // ✅ Category 가져오기
 import { useRecoilValue } from 'recoil';

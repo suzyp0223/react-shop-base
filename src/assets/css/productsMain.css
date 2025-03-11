@@ -39,7 +39,8 @@
   border-radius: 0.5rem;
   text-align: center;
   background-color: #fff;
-  width: 42.875rem; /* 686px; */
+  width: 42rem; /* 686px; */
+  transition: width 0.3s ease-out, max-width 0.3s ease-out;
 }
 
 /* 이미지 컨테이너 */
@@ -56,21 +57,23 @@
 /* 상품 이미지 */
 .product-img {
   width: 7.875rem; /* 126px */
-  height: 10rem; /* 160px */;
+  height: 10rem; /* 160px */
+  transition: transform 0.3s ease-out;
 }
 .product-img:hover {
   transform: scale(1.2);
 }
 
 .text-box {
-  /* width: 346px;
-  height: 140px; */
   padding: 2rem;
   background-color: #f3f4f6;
   text-align: left;
   font-size: 1rem;
   line-height: 1.5rem;
   color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 .text-box p:first-child {
   margin: 0 0 1.5rem;
@@ -79,28 +82,25 @@
 
 @media (min-width: 768px) {
   .product-grid {
-    /* width: 100%; 689px */
     display: grid;
     flex-wrap: wrap;
     justify-content: center;
-    /* grid-template-columns: repeat(2, minmax(0, 1fr)); */
     grid-template-columns: repeat(2, minmax(15rem, 1fr));
     gap: 1.5rem;
     justify-items: center;
   }
 
   /* 개별 제품 카드 */
-.product-card {
-  cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: center;
-  background-color: #fff;
-  width: 100%;
-  max-width: 28.625rem;
-  /* max-width: 458px; */
-  flex-grow: 1;
-}
+  .product-card {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #fff;
+    width: 100%;
+    max-width: 28.625rem;
+    flex-grow: 1;
+  }
 
   .img-wrap {
     gap: 1.5rem;
@@ -116,6 +116,7 @@
   .product-img {
     width: 7.875rem; /* 126px */
     height: 10rem; /* 160px */
+    transition: transform 0.3s ease-out;
   }
   .product-img:hover {
     transform: scale(1.2);
@@ -133,6 +134,29 @@
   .text-box p:first-child {
     margin: 0 0 24px;
     font-weight: bold;
+  }
+}
+
+@media (min-width: 960px) {
+  .carousel .control-dots {
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .carousel-container {
+    margin-top: -4rem;
+  }
+  .carousel-slider {
+    height: 13.75rem;
+  }
+  .carousel-container .carousel-slide {
+    height: 21rem;
+  }
+
+  .control-arrow:before,
+  .control-arrow:before {
+    visibility: hidden;
   }
 }
 

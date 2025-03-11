@@ -92,6 +92,8 @@ export default function Nav() {
     const navToggleLi = document.querySelectorAll(".NavToggleLi") as NodeListOf<HTMLElement>;
     const footer = document.querySelector('.footer') as HTMLElement;
     const main = document.querySelector('main') as HTMLElement;
+    const textBox = document.querySelectorAll('.text-box') as NodeListOf<HTMLElement>;
+    const categoryTitle = document.querySelectorAll('.category-title') as NodeListOf<HTMLElement>;
 
     const darkModeColor = "#374151";
     const darkSearchColor = "#4b5563";
@@ -104,8 +106,20 @@ export default function Nav() {
         navHamBtn.style.backgroundColor = darkModeColor;
         navHamBtn.style.color = "white";
         navSearch.style.backgroundColor = darkSearchColor;
+        navSearch.style.border = 'none';
         navSearch.style.outline = "none";
-        footer.style.backgroundColor = darkModeColor;
+        textBox.forEach(div => {
+          div.style.backgroundColor = darkModeColor;
+          div.style.height = "7.875rem";
+          div.style.color = '#a6adbb';
+        });
+        categoryTitle.forEach(title => {
+          title.style.color = '#a6adbb'
+        });
+        footer.style.backgroundColor = '#242933';
+        footer.style.backgroundColor = '#242933';
+        footer.style.color = lightgrayColor;
+
         // main.style.backgroundColor = darkModeColor;
       } else {
         navToggleLi.forEach((li) => {
@@ -159,7 +173,7 @@ export default function Nav() {
           </div>
           <Search />
           {/* <input className=" NavSearch" type="text" placeholder='검색' /> */}
-          <CartButton />
+        <CartButton />
 
           {/* 🔍 검색 결과 */}
 

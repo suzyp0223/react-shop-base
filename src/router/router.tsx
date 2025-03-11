@@ -6,7 +6,8 @@ import Index from "../views/Index";
 import Nav from "../components/layout/Nav";
 import Footer from "../components/layout/Footer";
 import ProductsView from "../components/products/ProductsView";
-import ProductsViewLoad from "../components/products/ProductsViewLoad";
+import ProductsViewLoad from "../components/products/ProductsCartView";
+
 
 const Router = (): JSX.Element => {
   return (
@@ -16,7 +17,6 @@ const Router = (): JSX.Element => {
       <Route path="/nav" element={<Nav />} />
       <Route path="/footer" element={<Footer />} />
       <Route path="/products/:category" element={<ProductsView />} />
-      <Route path="/cart" element={<Cart />} />
 
       <Route path="/ProductsView" element={<ProductsView />} />
       <Route path="/ProductsViewLoad" element={<ProductsViewLoad />} />

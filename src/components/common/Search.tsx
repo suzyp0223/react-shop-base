@@ -28,13 +28,13 @@ const Search = () => {
   return (
     <div className="search-container">
       {/* 검색 입력창 */}
-      <input
-        type="text"
-        value={search}
-        onChange={handleSearch}
-        placeholder="검색"
-        className="NavSearch"
-      />
+        <input
+          type="text"
+          value={search}
+          onChange={handleSearch}
+          placeholder="검색"
+          className="NavSearch"
+        />
 
       {/* 🔽 검색 결과 리스트 */}
       {search && filteredResults.length > 0 && (

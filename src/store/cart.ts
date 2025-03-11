@@ -1,6 +1,8 @@
 import { atom, selector } from "recoil";
 import { CART_ITEM } from "../constants/category";
 
+
+
 export interface ICartInfo {
   readonly id: number;
   readonly count: number;
@@ -44,6 +46,11 @@ export const cartList = () => {
 
 // addToCart는 구현 해보세요.
 export const addToCart = () => {
+
+  //카트돔
+//addToCartDom(product);
+
+
 
 };
 
