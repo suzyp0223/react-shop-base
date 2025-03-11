@@ -3,8 +3,8 @@ import React from "react";
 
 import { IProduct } from "../../store/products";
 import { Category } from "../../constants/category"; // ✅ Category 가져오기
+import { Link } from 'react-router-dom';
 
-import styled from "styled-components";
 
 type ProductPreview = Pick<IProduct, "id" | "category" | "title" | "price" | "image">;
 
@@ -12,9 +12,13 @@ const ProductsMain = ({ products }: { products: ProductPreview[] }) => {
   // ✅ 카테고리별 그룹화
   const categoryMap = products.reduce((acc, product) => {
     let categoryKey = product.category;
-    const fashionCategory =  ["men's clothing", "women's clothing"];
-    if (fashionCategory.includes(categoryKey)) {
+
+    if (["men's clothing", "women's clothing"].includes(categoryKey)) {
       categoryKey = "패션";
+    } else if (categoryKey === 'jewelery') {
+      categoryKey = Category.jewelery;
+    } else if (categoryKey === 'electronics') {
+      categoryKey = Category.electronics;
     }
 
     if (!acc[categoryKey]) acc[categoryKey] = [];
@@ -38,7 +42,7 @@ const ProductsMain = ({ products }: { products: ProductPreview[] }) => {
                   if (a.category === "women's clothing" && b.category === "men's clothing") return 1;
                   return 0;
                 }).map((product) => (
-                  <div className="product-card" key={product.id}>
+                  <Link className="product-card" key={product.id} to={`/product/${product.id}`}>
                     <div className="img-wrap">
                       <img src={product.image} alt={product.title} className="product-img" />
                     </div>
@@ -46,19 +50,19 @@ const ProductsMain = ({ products }: { products: ProductPreview[] }) => {
                       <p className="text-title">{product.title}</p>
                       <p className="text-price">${Math.round(Number(product.price.toLocaleString()))}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))
               : categoryMap[category].map((product) => (
-              <a className="product-card" key={product.id}>
-                <div className="img-wrap">
-                  <img src={product.image} alt={product.title} className="product-img" />
-                </div>
-                <div className="text-box">
-                  <p className="text-title">{product.title}</p>
-                  <p className="text-price">${Math.round(Number(product.price.toLocaleString()))}</p>
-                </div>
-              </a>
-            ))}
+                <Link className="product-card" key={product.id} to={`/product/${product.id}`}>
+                  <div className="img-wrap">
+                    <img src={product.image} alt={product.title} className="product-img" />
+                  </div>
+                  <div className="text-box">
+                    <p className="text-title">{product.title}</p>
+                    <p className="text-price">${Math.round(Number(product.price.toLocaleString()))}</p>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       ))}

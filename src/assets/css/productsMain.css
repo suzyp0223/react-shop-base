@@ -1,4 +1,8 @@
 /* 전체 컨테이너 */
+.products-view {
+  margin-top: -40px;;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -41,6 +45,8 @@
   background-color: #fff;
   width: 42rem; /* 686px; */
   transition: width 0.3s ease-out, max-width 0.3s ease-out;
+  display: block;
+  text-decoration: none;
 }
 
 /* 이미지 컨테이너 */
@@ -100,6 +106,8 @@
     width: 100%;
     max-width: 28.625rem;
     flex-grow: 1;
+    display: block;
+    text-decoration: none;
   }
 
   .img-wrap {
@@ -172,6 +180,8 @@
     text-align: center;
     background-color: #fff;
     width: 13.5rem; /* 216px */
+    display: block;
+    text-decoration: none;
   }
 
   .img-wrap {
@@ -234,6 +244,8 @@
     text-align: center;
     background-color: #fff;
     width: 19.75rem; /* 316px */
+    display: block;
+    text-decoration: none;
   }
 
   .img-wrap {

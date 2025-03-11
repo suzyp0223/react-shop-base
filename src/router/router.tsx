@@ -6,7 +6,9 @@ import Index from "../views/Index";
 import Nav from "../components/layout/Nav";
 import Footer from "../components/layout/Footer";
 import ProductsView from "../components/products/ProductsView";
-import ProductsViewLoad from "../components/products/ProductsCartView";
+import ProductsViewLoad from "../components/products/ProductsDetailView";
+import AddToCartDom from "../views/AddToCartDom";
+import ProductsDetailView from "../components/products/ProductsDetailView";
 
 
 const Router = (): JSX.Element => {
@@ -17,6 +19,9 @@ const Router = (): JSX.Element => {
       <Route path="/nav" element={<Nav />} />
       <Route path="/footer" element={<Footer />} />
       <Route path="/products/:category" element={<ProductsView />} />
+
+      <Route path="/cart" element={<AddToCartDom />} />
+      <Route path="/product/:id" element={<ProductsDetailView />} />
 
       <Route path="/ProductsView" element={<ProductsView />} />
       <Route path="/ProductsViewLoad" element={<ProductsViewLoad />} />

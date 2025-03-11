@@ -46,6 +46,7 @@ export const cartList = () => {
 
 // addToCart는 구현 해보세요.
 export const addToCart = () => {
+  
 
   //카트돔
 //addToCartDom(product);

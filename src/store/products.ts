@@ -1,7 +1,6 @@
 import { selector } from "recoil";
 import CONSTANTS from "../constants/constants";
 
-// https://67ce8aee125cd5af757ae569.mockapi.io/
 // 혹시 API통신이 되지 않는다면 /product.json파일을 활용해서 로드하세요.
 // const productsURL = '/products.json';
 const productsURL = `${CONSTANTS.IS_DEV ? `/proxy` : `${import.meta.env.VITE_FAKE_STORE_API}`}/products`;
