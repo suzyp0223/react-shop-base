@@ -20,6 +20,12 @@ export interface ICartState {
   readonly items?: Record<string | number, ICartInfo>;
 }
 
+export interface ICartProduct extends IProduct {
+  count: number;
+}
+
+
+
 /**
  * 카트의 상태는 localStorage 기준으로 초기화 됩니다.
  * 카트의 상태는 새로고침해도 유지되어야 하기 때문입니다.
@@ -39,7 +45,7 @@ export const cartState = atom<ICartState>({
  * cartList를 구현 하세요.
  * id, image, count 등을 return합니다.
  */
-export const cartList = (cart: ICartState, products: IProduct[]): ICartItems[] => {
+export const cartList = (cart: ICartState, products: IProduct[]): ICartProduct[] => {
   if (!cart.items) return [];
 
   return Object.keys(cart.items)
@@ -47,15 +53,13 @@ export const cartList = (cart: ICartState, products: IProduct[]): ICartItems[] =
       const product = products.find((p) => p.id === Number(id));
       if (!product) return null;
       return {
-        id: id,
-        title: product.title,
-        price: product.price,
-        count: cart.items![Number(id)].count,
-        image: product.image,
+        ...product, // ✅ 기존 상품 정보 유지
+        count: cart.items?.[Number(id)]?.count ?? 1, // ✅ count가 없으면 기본값 1
       };
     })
-    .filter((item): item is ICartItems => item !== null);
+    .filter((item): item is ICartProduct => item !== null);
 };
+
 
 // 없으면 빈 배열 초기화
 let store = getStorageItem("store") || [];
@@ -76,12 +80,6 @@ export const existCartProduct = (id: number) => {
   return item;
 };
 
-// 장바구니 비었는지 확인
-export const isCartEmpty = () => {
-  return cart.length === 0;
-}
-
-
 // addToCart
 export const addToCart = (cart: ICartState, product: IProduct): ICartState => {
   const tempCart = { ...cart.items };
@@ -96,14 +94,10 @@ export const addToCart = (cart: ICartState, product: IProduct): ICartState => {
 };
 
 // removeFromCart는 참고 하세요.
-export const removeFromCart = (cart: ICartState, id: string) => {
-  const tempCart = { ...cart };
-  if (tempCart[id].count === 1) {
-    delete tempCart[id];
-    return tempCart;
-  } else {
-    return { ...tempCart, [id]: { id: id, count: cart[id].count - 1 } };
-  }
+export const removeFromCart = (cart: ICartState, id: string): ICartState => {
+  const updatedCart = { ...cart.items };
+  delete updatedCart[id];
+  return { items: updatedCart };
 };
 
 export const updateCartQuantity = (cart: ICartState, id: number, amount: number): ICartState => {
@@ -120,9 +114,5 @@ export const updateCartQuantity = (cart: ICartState, id: number, amount: number)
 export const calculateTotalPrice = (cart: ICartState, products: IProduct[]): number => {
   if (!cart.items) return 0;
 
-  return Object.keys(cart.items).reduce((total, id) => {
-    const product = products.find((p) => p.id === Number(id));
-    if (!product) return total;
-    return total + product.price * cart.items![Number(id)].count;
-  }, 0);
+  return cartList(cart, products).reduce((total, item) => total + item.price * item.count, 0);
 };
