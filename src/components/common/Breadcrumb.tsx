@@ -11,7 +11,7 @@ const BreadCrumb = ({ category = "", crumb = "" }: IBreadCrumbsPros): JSX.Elemen
   const resolveCategory = Category[category] || category;
 
   return (
-    <div className="text-sm breadcrumbs">
+    <div className="text-sm breadcrumbs" style={{marginLeft:"16px", marginTop:"-46px", fontSize:"16px"}}>
       <ul>
         <li>{resolveCategory}</li>
         <li>{crumb}</li>

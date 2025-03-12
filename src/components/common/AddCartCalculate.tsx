@@ -2,18 +2,19 @@ import { Link, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 
-import "../assets/css/addToCartDom.css";
+import "../../assets/css/addCartCalculate.css";
 import styled from "styled-components";
 
-import { IProduct, productsList } from "../store/products";
-import { MENUS } from '../constants/category';
-import { cartState, cartList, removeFromCart, updateCartQuantity, calculateTotalPrice } from "../store/cart";
+import { IProduct, productsList } from "../../store/products";
+import { MENUS } from '../../constants/category';
+import { cartState, cartList, removeFromCart, updateCartQuantity, calculateTotalPrice } from "../../store/cart";
+import { TotalPrice } from "./TotalPrice";
 
-const AddToCartDom = () => {
+const AddCartCalculate = () => {
   const { id } = useParams();
   const [cart, setCart] = useRecoilState(cartState);
-  // const [product, setProduct] = useState<IProduct || null>(null); // ✅ JSON 데이터를 저장할 상태
   const [products, setProducts] = useState<IProduct[]>([]);
+  // const [product, setProduct] = useState<IProduct || null>(null); // ✅ JSON 데이터를 저장할 상태
 
   useEffect(() => {
     fetch("../../public/products.json") // `public` 폴더 기준으로 JSON 파일 로드
@@ -22,7 +23,7 @@ const AddToCartDom = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("📢 불러온 상품 데이터:", data);
+        // console.log("📢 불러온 상품 데이터:", data);
         // 상태에 저장
         setProducts(data);
       })
@@ -32,9 +33,9 @@ const AddToCartDom = () => {
   // ✅ 장바구니 리스트 변환
   const cartItems = cartList(cart, products);
 
-  console.log("📢 현재 장바구니 상태:", cart);
-  console.log("📢 변환된 장바구니 데이터:", cartItems);
-  
+  // console.log("📢 현재 장바구니 상태:", cart);
+  // console.log("📢 변환된 장바구니 데이터:", cartItems);
+
 
   // ✅ 상품 수량 증가
   const handleIncrease = (id: number) => {
@@ -53,6 +54,7 @@ const AddToCartDom = () => {
 
   // ✅ 총 가격 계산
   const totalPrice = calculateTotalPrice(cart, products);
+
 
 
   return (
@@ -93,26 +95,25 @@ const AddToCartDom = () => {
       </div>
 
       {/* ✅ 총 결제 금액 표시 */}
-      <div className="cartTotalWrap">
-        <h2>총 : <span className="cartTotalPrice">${Math.round(totalPrice)}</span></h2>
-        <label htmlFor="buy-modal" className="buy-modal-btn">구매하기</label>
-        <input type="checkbox" id="buy-modal" className="buy-modal-toggle" />
-      </div>
-
-      {/* 모달 */}
-      <div className="buy-modal-wrap">
-        <div className="modal-text">
-          <h3 className="modal-text-title">정말로 구매하시겠습니까?</h3>
-          <p>장바구니의 모든 상품들이 삭제됩니다.</p>
-          <div className="modal-action">
-            <label htmlFor="confirm-modal" className="modal-yes">네</label>
-            <label htmlFor="confirm-modal" className="modal-no">아니오</label>
-          </div>
-        </div>
-      </div>
+      <TotalPrice />
     </>
   );
 };
+
+
+export const CartTotalWrap = styled.div`
+  margin-top: 50px;
+  margin-left: 10px;
+  border: 1ps solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 2px solid #ddd;
+  width: 61rem;
+  height: 3rem;
+;`
 
 
 
@@ -134,4 +135,4 @@ const LiArrow = styled.i`
         opacity: 0.4;
 `;
 
-export default AddToCartDom;
+export default AddCartCalculate;

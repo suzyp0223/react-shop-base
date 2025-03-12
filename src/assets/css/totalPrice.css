@@ -1,0 +1,25 @@
+.cartTotalWrap {
+  margin: 40px 0px 80px 30px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+.buy-modal-btn {
+  margin-left: 20px;
+  background-color: #570df8;
+  color: white;
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  height: 50px;
+  width: 90px;
+  text-align: center;
+  line-height: 17px;
+  font-weight: 600;
+}
+
+.buy-modal-toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}

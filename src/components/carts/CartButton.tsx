@@ -7,18 +7,18 @@ import { Link } from 'react-router-dom';
 
 const CartButton = () => {
   const [cartCount, setCartCount] = useRecoilState(cartState);
-// <Link to="/">{textHome}</Link>
+
   return (
     <div className='NavCart'>
-      <Link className='NavCartLink' to='/cart' >
+      <Link className='NavCartLink' to="/cart" >
         <button className="NavCartBtn" onClick={() => setCartCount(cartCount + 1)}>
 
-        <CartIcon size={24} />
-        {cartCount >= 0 && (
-          <span className='CartBadge'>
-            {cartCount}
-          </span>
-        )}
+          <CartIcon size={24} />
+          {cartCount >= 0 && (
+            <span className='CartBadge'>
+              {cartCount}
+            </span>
+          )}
 
         </button>
       </Link>

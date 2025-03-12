@@ -33,7 +33,6 @@ const ProductsMain = ({ products }: { products: ProductPreview[] }) => {
         <div className="category-section" key={category}>
           <h2 className="category-title">{category}</h2>
 
-          {/* ✅ className으로 외부 CSS 적용 */}
           <div className="product-grid">
             {category === "패션"
               ? categoryMap[category]

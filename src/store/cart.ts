@@ -1,8 +1,7 @@
 import { atom, selector } from "recoil";
 import { CART_ITEM } from "../constants/category";
 import { IProduct } from "./products";
-
-
+import { getStorageItem } from "../utils/utils";
 
 export interface ICartInfo {
   readonly id: number;
@@ -36,7 +35,6 @@ export const cartState = atom<ICartState>({
   ],
 });
 
-
 /**
  * cartList를 구현 하세요.
  * id, image, count 등을 return합니다.
@@ -59,7 +57,32 @@ export const cartList = (cart: ICartState, products: IProduct[]): ICartItems[] =
     .filter((item): item is ICartItems => item !== null);
 };
 
-// addToCart는 구현 해보세요.
+// 없으면 빈 배열 초기화
+let store = getStorageItem("store") || [];
+let cart = getStorageItem("cart") || [];
+
+//상품찾기
+export const findProduct = (id: number) => {
+  return store.find((product) => product.id === id) || null;
+};
+
+// 상품존재 확인
+export const existCartProduct = (id: number) => {
+  let item = cart.find((cartItem) => cartItem.id === id);
+
+  if (!item) {
+    return findProduct(id);
+  }
+  return item;
+};
+
+// 장바구니 비었는지 확인
+export const isCartEmpty = () => {
+  return cart.length === 0;
+}
+
+
+// addToCart
 export const addToCart = (cart: ICartState, product: IProduct): ICartState => {
   const tempCart = { ...cart.items };
 
@@ -82,10 +105,6 @@ export const removeFromCart = (cart: ICartState, id: string) => {
     return { ...tempCart, [id]: { id: id, count: cart[id].count - 1 } };
   }
 };
-
-/**
- * 그 외에 화면을 참고하며 필요한 기능들을 구현 하세요.
- */
 
 export const updateCartQuantity = (cart: ICartState, id: number, amount: number): ICartState => {
   const tempCart = { ...cart.items };

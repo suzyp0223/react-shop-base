@@ -24,7 +24,6 @@ export const ProductsTitle = () => {
         </TitleArrow>
       </TitleLi>
     </section>
-    // 아이템 카드 붙이기250311
   );
 
 };

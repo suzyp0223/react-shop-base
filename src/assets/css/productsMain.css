@@ -1,6 +1,7 @@
 /* 전체 컨테이너 */
 .products-view {
-  margin-top: -40px;;
+  margin-top: -40px;
+
 }
 
 .container {
@@ -80,6 +81,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  height: 126px;
 }
 .text-box p:first-child {
   margin: 0 0 1.5rem;
@@ -138,9 +140,10 @@
     color: black;
     display: flex;
     flex-direction: column;
+    height: 126px;
   }
   .text-box p:first-child {
-    margin: 0 0 24px;
+    margin: 0 0 20px;
     font-weight: bold;
   }
 }
