@@ -62,7 +62,6 @@ const AddCartCalculate = () => {
                     <button className="btn btn-num">{product.count}</button>
                     <button className="btn btn-primary-right" onClick={() => handleIncrease(Number(product.id))}>+</button>
                   </div>
-                  {/* <button className="btn btn-danger" onClick={() => handleRemove(Number(product.id))}>삭제</button> */}
                 </div>
               </div>
             </div>
@@ -70,8 +69,6 @@ const AddCartCalculate = () => {
         }
       </div>
 
-      {/* ✅ 총 결제 금액 표시 */}
-      {/* <TotalPrice /> */}
     </>
   );
 };
