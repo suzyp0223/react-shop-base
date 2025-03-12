@@ -11,7 +11,7 @@ const CartButton = () => {
   return (
     <div className='NavCart'>
       <Link className='NavCartLink' to="/cart" >
-        <button className="NavCartBtn" onClick={() => setCartCount(cartCount + 1)}>
+        <button className="NavCartBtn" >
 
           <CartIcon size={24} />
           {cartCount >= 0 && (

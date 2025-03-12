@@ -7,7 +7,7 @@
   margin: 3rem 2rem;
 }
 
-.addCartFlexWrap{
+.addCartFlexWrap {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -21,6 +21,7 @@
   text-align: center;
   margin-bottom: 3rem;
 }
+
 .addCartImg {
   width: 15%;
 }
@@ -36,7 +37,7 @@
 }
 .textTotalPrice {
   font-size: 2rem;
-  margin-right: 0.6rem
+  margin-right: 0.6rem;
 }
 .textOriginPrice {
   font-size: 1.6em;
@@ -45,6 +46,11 @@
   background-color: transparent;
   color: black;
   border: none;
+  border-radius: 0;
+}
+.btn-num:hover {
+  background-color: #1f293733;
+  border-radius: 0;
 }
 
 .btn-primary-left {
@@ -57,16 +63,52 @@
   background: #570df8;
 }
 
+@media (min-width: 1025px) {
+  .wrap {
+    min-height: 44vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .addCartFlexWrap {
+    flex-direction: row;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+  }
 
-@media (max-width: 768px) {
-}
+  .addCartImgWrap {
+    width: 55%;
+    display: flex;
+    align-items: center;
+  }
 
-@media (max-width: 960px) {
-}
+  .addCartImg {
+    width: 100%;
+    max-width: 250px; /* 최대 크기 제한 */
+    height: auto;
+  }
+  .addCartTextWrap {
+    width: 100%;
+  }
+  .textTitle {
+    width: 80%;
+  }
+  .btnBox {
+    display: flex;
+  }
 
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 1280px) {
+  .drawer section:nth-child(2) {
+    position: relative;
+  }
+  .cartTotalWrap {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    position: absolute;
+    top: 154px;
+    right: 0px;
+    width: 200px;
+  }
 }
